@@ -13,10 +13,7 @@
     "url": "https://github.com/revathskumar"
   },
   "main": "app/index.js",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/revathskumar/generator-backbone-mocha.git"
-  },
+  "repository": "ynonp/generator-backbone-mocha",
   "scripts": {
     "test": "mocha --reporter spec"
   },
