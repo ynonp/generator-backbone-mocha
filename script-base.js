@@ -61,9 +61,17 @@ var BackboneMochaGenerator = yeoman.generators.NamedBase.extend({
 
       backboneUtils.rewriteFile({
         file: fullPath,
+        needle: '<!-- end include -->',
+        splicable: [
+          '<script src="' + script + '"></script>'
+        ]
+      });
+
+      backboneUtils.rewriteFile({
+        file: fullPath,
         needle: '<!-- include spec files here... -->',
         splicable: [
-          '<script src="' + script + '.js"></script>'
+					'<script src="' + script.replace(/^/,'../app/scripts/').replace('.spec','') + '"></script>'
         ]
       });
     } catch (e) {
@@ -87,7 +95,7 @@ var BackboneMochaGenerator = yeoman.generators.NamedBase.extend({
       prefix = 'coffee-';
     }
     this.template(prefix + this.options.ui + '/' + type + this.ext, this.destFile);
-    this.addScriptToIndex(type + 's/' +  this.name);
+    this.addScriptToIndex(type + 's/' +  this.fileName());
   },
 });
 
